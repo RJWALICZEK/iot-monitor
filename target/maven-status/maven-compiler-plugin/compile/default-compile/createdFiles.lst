@@ -1,0 +1,6 @@
+com\example\iot_monitor\repository\MeasurementRepository.class
+com\example\iot_monitor\service\MeasurementService.class
+com\example\iot_monitor\IotMonitorApplication.class
+com\example\iot_monitor\entity\Measurement.class
+com\example\iot_monitor\controller\MeasurementController.class
+com\example\iot_monitor\package-info.class

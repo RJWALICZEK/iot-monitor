@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("api/v1/measurements")
+@RequestMapping("/api/v1/measurements")
 @CrossOrigin(origins = "*")  //for tests
 public class MeasurementController {
 

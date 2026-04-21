@@ -11,8 +11,8 @@ import java.util.List;
 @Repository
 public interface MeasurementRepository extends JpaRepository<Measurement, Long> {
     //get last 50 measurements
-    List<Measurement> findAllByOrderByTimestampDesc(Pageable pageable);
+    List<Measurement> findAllByOrderByTsDesc(Pageable pageable);
 
     //get measurements from last hour
-    List<Measurement> findByTimestampAfter(Instant timestamp);
+    List<Measurement> findByTsAfter(Instant ts);
 }

@@ -24,11 +24,11 @@ public class MeasurementService {
     public List<Measurement> getLastMeasurement(int limit) {
         if (limit <= 0) { limit = 10; }
         if (limit >= 1000) {limit = 1000; }
-        return repository.findAllByOrderByTimestampDesc(PageRequest.of(0, limit));
+        return repository.findAllByOrderByTsDesc(PageRequest.of(0, limit));
     }
 
     public List<Measurement> getMeasurementFromLastHour() {
         Instant oneHourAgo = Instant.now().minus(1, ChronoUnit.HOURS);
-        return repository.findByTimestampAfter(oneHourAgo);
+        return repository.findByTsAfter(oneHourAgo);
     }
 }

@@ -1,0 +1,77 @@
+#include "DHT.h"
+#include <WiFi.h>
+#include <HTTPClient.h>
+#include <ArduinoJson.h>
+
+#define DHTPIN 4
+#define DHTTYPE DHT11
+
+const char* WIFI_SSID = "FunBox2-48E0";
+const char* WIFI_PASS = "4EF5FA317D4D576173F241FF7E";
+
+const char* SERVER_URL = "http://192.168.1.14:8080/api/v1/measurements";
+
+DHT dht(DHTPIN, DHTTYPE);
+
+void setup() {
+  Serial.begin(115200);
+  delay(1000);
+  dht.begin();
+
+  WiFi.begin(WIFI_SSID, WIFI_PASS);
+  Serial.print("WiFi connecting");
+
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(200);
+    Serial.print(".");
+  }
+
+  Serial.println("\nWiFi connected!");
+  Serial.println("IP: " + WiFi.localIP().toString());
+}
+
+void loop() {
+  if (WiFi.status() != WL_CONNECTED) {
+    Serial.println("WiFi lost, reconnecting...");
+    WiFi.reconnect();
+    delay(2000);
+    return;
+  }
+
+  delay(10000);
+
+  float h = dht.readHumidity();
+  float t = dht.readTemperature();
+
+  if (isnan(h) || isnan(t)) {
+    Serial.println("Read data error");
+    return;
+  }
+
+  StaticJsonDocument<200> doc;
+  doc["temperature"] = t;
+  doc["humidity"] = h;
+  doc["device"] = "ESP32_DevKit";
+  doc["location"] = "testLocation";
+
+  String jsonPayload;
+  serializeJson(doc, jsonPayload);
+
+  WiFiClient client;
+  HTTPClient http;
+
+  http.begin(client, SERVER_URL);
+  http.addHeader("Content-Type", "application/json");
+
+  int httpResponseCode = http.POST(jsonPayload);
+
+  if (httpResponseCode > 0) {
+    Serial.printf("Temp: %.2f C | Humi: %.0f%% -> HTTP %d\n",
+                  t, h, httpResponseCode);
+  } else {
+    Serial.printf("HTTP error: %s\n",
+                  http.errorToString(httpResponseCode).c_str());
+  }
+
+  http.end();
+}

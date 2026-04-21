@@ -17,8 +17,8 @@ public class Measurement {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "timestamp", nullable = false)
-    private Instant timestamp;
+    @Column(name = "ts", nullable = false)
+    private Instant ts;
 
     @Column(name = "temperature", nullable = false)
     private Double temperature;
@@ -32,8 +32,8 @@ public class Measurement {
     @Column(name = "location", length = 100)
     private String location;
 
-    public Measurement(Instant timestamp, Double temperature, Double humidity, String device, String location) {
-        this.timestamp = timestamp;
+    public Measurement(Instant ts, Double temperature, Double humidity, String device, String location) {
+        this.ts = ts;
         this.temperature = temperature;
         this.humidity = humidity;
         this.device = device;
