@@ -5,7 +5,7 @@ import com.example.iot_monitor.service.MeasurementService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.List;
 import java.util.Map;
 
@@ -22,13 +22,17 @@ public class MeasurementController {
 
     @PostMapping
     public ResponseEntity<Measurement> addMeasurement (@RequestBody Map<String, Object> payload) {
+
+        if(!payload.containsKey("temperature") || !payload.containsKey("humidity")) {
+            return ResponseEntity.badRequest().build();
+        }
         Double temperature = Double.valueOf(payload.get("temperature").toString());
         Double humidity = Double.valueOf(payload.get("humidity").toString());
         String device = (String) payload.getOrDefault("device", "ESP32_DevKit");
-        String location = (String) payload.getOrDefault("testLocation", "mo location available");
+        String location = (String) payload.getOrDefault("location", "mo location available");
 
         Measurement measurement = new Measurement(
-                LocalDateTime.now(),
+                Instant.now(),
                 temperature,
                 humidity,
                 device,
@@ -44,5 +48,10 @@ public class MeasurementController {
     @GetMapping("/latest")
     public ResponseEntity<List<Measurement>> getLatest() {
         return ResponseEntity.ok(service.getLastMeasurement(50));
+    }
+
+    @GetMapping("/last-hour")
+    public ResponseEntity<List<Measurement>> getLastHour() {
+        return ResponseEntity.ok(service.getMeasurementFromLastHour());
     }
 }

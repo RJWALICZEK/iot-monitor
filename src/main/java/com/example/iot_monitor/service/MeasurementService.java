@@ -2,9 +2,11 @@ package com.example.iot_monitor.service;
 
 import com.example.iot_monitor.entity.Measurement;
 import com.example.iot_monitor.repository.MeasurementRepository;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Service
@@ -20,11 +22,13 @@ public class MeasurementService {
     }
 
     public List<Measurement> getLastMeasurement(int limit) {
-        return repository.findTop50ByOrderByTimestampDesc();
+        if (limit <= 0) { limit = 10; }
+        if (limit >= 1000) {limit = 1000; }
+        return repository.findAllByOrderByTimestampDesc(PageRequest.of(0, limit));
     }
 
     public List<Measurement> getMeasurementFromLastHour() {
-        LocalDateTime oneHourAgo = LocalDateTime.now().minusHours(1);
+        Instant oneHourAgo = Instant.now().minus(1, ChronoUnit.HOURS);
         return repository.findByTimestampAfter(oneHourAgo);
     }
 }
