@@ -47,6 +47,7 @@ Przykładowy request:
   "device": "ESP32_DevKit",
   "location": "serwerownia pokój 1.12"
 }
+
 GET /api/v1/measurements
 
 Zwraca listę wszystkich pomiarów z bazy danych.
@@ -100,10 +101,43 @@ UML diagramy (FR-008)
 model PCB ESP32 (FR-011)
 bezpieczeństwo SSL/TLS (NFR-004)
 CI/CD (QR-003)
+
+
 🚀 Uruchomienie projektu
-Backend
-./mvnw spring-boot:run
-Baza danych
+
+1. Wymagania
+Java 21+
+Maven (lub wrapper ./mvnw)
+Docker + Docker Compose
+ESP32 (opcjonalnie do testów IoT)
+
+3. Uruchomienie bazy danych (Docker)
+W katalogu projektu uruchom:
+
+docker compose up -d
+
+Spowoduje to uruchomienie:
+PostgreSQL + TimescaleDB (localhost:5432)
+pgAdmin (localhost:5050)
+
+3. Uruchomienie aplikacji Spring Boot
+./mvnw clean spring-boot:run
+
+Po uruchomieniu:
+aplikacja startuje na http://localhost:8080
+Flyway automatycznie:
+tworzy tabele
+tworzy hypertable TimescaleDB
+inicjalizuje schemat bazy
+
+4. Dostęp do bazy (opcjonalnie)
+pgAdmin
+http://localhost:5050
+
+Dane logowania:
+email: admin@admin.com
+hasło: admin
+
 
 PostgreSQL + TimescaleDB (baza: iotdb)
 
@@ -111,7 +145,6 @@ PostgreSQL + TimescaleDB (baza: iotdb)
 
 ESP32 → JSON → REST API → Spring Boot → PostgreSQL → TimescaleDB
 
-📌 Autor
 
 Projekt edukacyjny – system IoT w architekturze mikroserwisowej
 Spring Boot + ESP32 + PostgreSQL + TimescaleDB
