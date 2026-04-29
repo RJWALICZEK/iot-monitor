@@ -1,6 +1,6 @@
 # IoT Monitor – Mikroserwisowy system zbierania danych z ESP32
 
-## 📌 Opis projektu
+## Opis projektu
 
 IoT Monitor to aplikacja oparta o architekturę mikroserwisową umożliwiająca zbieranie, przechowywanie i analizę danych telemetrycznych z urządzeń IoT (ESP32 z czujnikiem DHT11).
 
@@ -14,13 +14,13 @@ Dane takie jak temperatura, wilgotność, czas pomiaru oraz lokalizacja urządze
 
 ---
 
-## 🏗️ Architektura systemu
+##  Architektura systemu
 
 ESP32 (DHT11) → HTTP REST → Spring Boot API (8080) → PostgreSQL + TimescaleDB
 
 ---
 
-## ⚙️ Technologie
+##  Technologie
 
 - Java 21+
 - Spring Boot 3.5
@@ -34,7 +34,7 @@ ESP32 (DHT11) → HTTP REST → Spring Boot API (8080) → PostgreSQL + Timescal
 
 ---
 
-## 📡 REST API
+##  REST API
 
 ### POST /api/v1/measurements
 
@@ -52,7 +52,7 @@ GET /api/v1/measurements
 
 Zwraca listę wszystkich pomiarów z bazy danych.
 
-🗄️ Baza danych
+ Baza danych
 
 Tabela: measurements
 
@@ -82,7 +82,7 @@ wysyłanie danych co 10 sekund do API
 
 Endpoint: http://<server-ip>:8080/api/v1/measurements
 
-🧪 Status projektu
+ Status projektu
 ✔ ZREALIZOWANE
 Spring Boot REST API (FR-001, FR-006, FR-005)
 zapis danych do PostgreSQL (FR-002)
@@ -91,7 +91,7 @@ Flyway migracje
 TimescaleDB hypertable
 działający pipeline IoT → backend → DB
 lokalne środowisko uruchomieniowe
-🔄 W TRAKCIE
+ W TRAKCIE
 interfejs webowy (FR-003, FR-004)
 aplikacja mobilna (FR-003, FR-009)
 dashboard wizualizacji danych
@@ -103,7 +103,7 @@ bezpieczeństwo SSL/TLS (NFR-004)
 CI/CD (QR-003)
 
 
-🚀 Uruchomienie projektu
+ Uruchomienie projektu
 
 1. Wymagania
 Java 21+
@@ -141,7 +141,7 @@ hasło: admin
 
 PostgreSQL + TimescaleDB (baza: iotdb)
 
-📊 Przepływ danych
+ Przepływ danych
 
 ESP32 → JSON → REST API → Spring Boot → PostgreSQL → TimescaleDB
 
