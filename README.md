@@ -18,15 +18,13 @@ Funkcje:
 odczyt temperatury i wilgotności
 wysyłanie danych co 10 sekund do API
 
----
 
-##  Architektura systemu
+**Architektura systemu**
 
 ESP32 (DHT11) → HTTP REST → Spring Boot API (8080) → PostgreSQL + TimescaleDB
 
----
 
-##  Technologie
+**Technologie**
 
 - Java 21+
 - Spring Boot 3.5
@@ -40,110 +38,110 @@ ESP32 (DHT11) → HTTP REST → Spring Boot API (8080) → PostgreSQL + Timescal
 
 ---
 
-### POST http://localhost:8080/api/v1/measurements
+POST http://localhost:8080/api/v1/measurements  
 
-Przykładowy request:
+Przykładowy request:  
 
-JSON
-{
-  "temperature": 23.5,
-  "humidity": 45.0,
-  "device": "ESP32_DevKit",
-  "location": "serwerownia pokój 1.12"
-}
+JSON  
+{  
+  "temperature": 23.5,  
+  "humidity": 45.0,  
+  "device": "ESP32_DevKit",  
+  "location": "serwerownia pokój 1.12"  
+}  
 
-get http://localhost:8080/api/v1/measurements/latest
-Zwraca listę wszystkich pomiarów z bazy danych.
+get http://localhost:8080/api/v1/measurements/latest  
+Zwraca listę wszystkich pomiarów z bazy danych.  
 
-get http://localhost:8080/api/v1/measurements/last-hour
-z ostatniej godziny
+get http://localhost:8080/api/v1/measurements/last-hour  
+z ostatniej godziny  
 
-Baza danych:
+Baza danych:  
 
-Tabela: measurements
+Tabela: measurements  
 
-id (BIGSERIAL)
-ts (TIMESTAMPTZ)
-temperature (DOUBLE PRECISION)
-humidity (DOUBLE PRECISION)
-device (VARCHAR)
-location (VARCHAR)
+id (BIGSERIAL)  
+ts (TIMESTAMPTZ)  
+temperature (DOUBLE PRECISION)  
+humidity (DOUBLE PRECISION)  
+device (VARCHAR)  
+location (VARCHAR)  
 
-Dodatkowo:
+Dodatkowo:  
 
-TimescaleDB hypertable
-indeks na ts DESC
+TimescaleDB hypertable  
+indeks na ts DESC  
 
-** Status projektu**
+** Status projektu**  
 
-ZREALIZOWANE
-Spring Boot REST API (FR-001, FR-006, FR-005)
-zapis danych do PostgreSQL (FR-002)
-integracja ESP32 → API → baza danych
-Flyway migracje
-TimescaleDB hypertable
-działający pipeline IoT → backend → DB
-lokalne środowisko uruchomieniowe
+ZREALIZOWANE  
+Spring Boot REST API (FR-001, FR-006, FR-005)  
+zapis danych do PostgreSQL (FR-002)  
+integracja ESP32 → API → baza danych  
+Flyway migracje  
+TimescaleDB hypertable  
+działający pipeline IoT → backend → DB  
+lokalne środowisko uruchomieniowe  
  
  
-W TRAKCIE
-interfejs webowy (FR-003, FR-004)
-aplikacja mobilna (FR-003, FR-009)
-dashboard wizualizacji danych
-testy jednostkowe i integracyjne (QR-002)
-dokumentacja LaTeX (FR-007)
-UML diagramy (FR-008)
-model PCB ESP32 (FR-011)
-bezpieczeństwo SSL/TLS (NFR-004)
-CI/CD (QR-003)
+W TRAKCIE  
+interfejs webowy (FR-003, FR-004)  
+aplikacja mobilna (FR-003, FR-009)  
+dashboard wizualizacji danych  
+testy jednostkowe i integracyjne (QR-002)  
+dokumentacja LaTeX (FR-007)  
+UML diagramy (FR-008)  
+model PCB ESP32 (FR-011)  
+bezpieczeństwo SSL/TLS (NFR-004)  
+CI/CD (QR-003)  
 
-  ****Uruchomienie projektu****
+  ****Uruchomienie projektu****  
 
-1. Wymagania
-Java 21+
-Maven (lub wrapper ./mvnw)
-Docker + Docker Compose
-ESP32 (opcjonalnie do testów IoT)
+1. Wymagania  
+Java 21+  
+Maven (lub wrapper ./mvnw)  
+Docker + Docker Compose  
+ESP32 (opcjonalnie do testów IoT)  
 
-3. Uruchomienie bazy danych (Docker)
-W katalogu projektu uruchom:
+3. Uruchomienie bazy danych (Docker)  
+W katalogu projektu uruchom:  
 
-docker compose up -d
+docker compose up -d  
 
-Spowoduje to uruchomienie:
-PostgreSQL + TimescaleDB (localhost:5432)
-pgAdmin (localhost:5050)
+Spowoduje to uruchomienie:  
+PostgreSQL + TimescaleDB (localhost:5432)  
+pgAdmin (localhost:5050)  
 
-3. Uruchomienie aplikacji Spring Boot
-./mvnw clean spring-boot:run
+3. Uruchomienie aplikacji Spring Boot  
+./mvnw clean spring-boot:run  
 
-Po uruchomieniu:
-aplikacja startuje na http://localhost:8080
-Flyway automatycznie:
-tworzy tabele
-tworzy hypertable TimescaleDB
-inicjalizuje schemat bazy
+Po uruchomieniu:  
+aplikacja startuje na http://localhost:8080  
+Flyway automatycznie:  
+tworzy tabele  
+tworzy hypertable TimescaleDB  
+inicjalizuje schemat bazy  
 
-4. Dostęp do bazy
-pgAdmin
-http://localhost:5050
+4. Dostęp do bazy  
+pgAdmin  
+http://localhost:5050  
 
-Dane logowania:
-email: admin@admin.com
-hasło: admin
+Dane logowania:  
+email: admin@admin.com  
+hasło: admin  
 
-dodawanie bazy:
-name:iotmanager
+dodawanie bazy:  
+name:iotmanager  
 
-Hostname/address: timescaledb
-port:5431
-maintenace database: iotdb
-username: postgres
-password: postgres
+Hostname/address: timescaledb  
+port:5431  
+maintenace database: iotdb  
+username: postgres  
+password: postgres  
 
 
- Przepływ danych
+ Przepływ danych  
 
-ESP32 → JSON → REST API → Spring Boot → PostgreSQL → TimescaleDB
+ESP32 → JSON → REST API → Spring Boot → PostgreSQL → TimescaleDB  
 
 
