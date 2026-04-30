@@ -74,8 +74,9 @@ Dodatkowo:
 TimescaleDB hypertable
 indeks na ts DESC
 
- Status projektu
-✔ ZREALIZOWANE
+** Status projektu**
+
+ZREALIZOWANE
 Spring Boot REST API (FR-001, FR-006, FR-005)
 zapis danych do PostgreSQL (FR-002)
 integracja ESP32 → API → baza danych
@@ -83,7 +84,9 @@ Flyway migracje
 TimescaleDB hypertable
 działający pipeline IoT → backend → DB
 lokalne środowisko uruchomieniowe
- W TRAKCIE
+ 
+ 
+W TRAKCIE
 interfejs webowy (FR-003, FR-004)
 aplikacja mobilna (FR-003, FR-009)
 dashboard wizualizacji danych
@@ -94,7 +97,7 @@ model PCB ESP32 (FR-011)
 bezpieczeństwo SSL/TLS (NFR-004)
 CI/CD (QR-003)
 
- Uruchomienie projektu
+  ****Uruchomienie projektu****
 
 1. Wymagania
 Java 21+
