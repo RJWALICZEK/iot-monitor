@@ -12,6 +12,12 @@ System składa się z:
 
 Dane takie jak temperatura, wilgotność, czas pomiaru oraz lokalizacja urządzenia są wysyłane przez ESP32 do API i zapisywane w bazie danych w czasie rzeczywistym.
 
+Funkcje:
+
+łączenie z WiFi
+odczyt temperatury i wilgotności
+wysyłanie danych co 10 sekund do API
+
 ---
 
 ##  Architektura systemu
@@ -34,9 +40,7 @@ ESP32 (DHT11) → HTTP REST → Spring Boot API (8080) → PostgreSQL + Timescal
 
 ---
 
-##  REST API
-
-### POST /api/v1/measurements
+### POST http://localhost:8080/api/v1/measurements
 
 Przykładowy request:
 
@@ -48,11 +52,13 @@ Przykładowy request:
   "location": "serwerownia pokój 1.12"
 }
 
-GET /api/v1/measurements
-
+get http://localhost:8080/api/v1/measurements/latest
 Zwraca listę wszystkich pomiarów z bazy danych.
 
- Baza danych
+get http://localhost:8080/api/v1/measurements/last-hour
+z ostatniej godziny
+
+Baza danych:
 
 Tabela: measurements
 
@@ -67,20 +73,6 @@ Dodatkowo:
 
 TimescaleDB hypertable
 indeks na ts DESC
-🔌 ESP32 (IoT)
-
-Urządzenie:
-
-ESP32 DevKit
-czujnik DHT11
-
-Funkcje:
-
-łączenie z WiFi
-odczyt temperatury i wilgotności
-wysyłanie danych co 10 sekund do API
-
-Endpoint: http://<server-ip>:8080/api/v1/measurements
 
  Status projektu
 ✔ ZREALIZOWANE
@@ -101,7 +93,6 @@ UML diagramy (FR-008)
 model PCB ESP32 (FR-011)
 bezpieczeństwo SSL/TLS (NFR-004)
 CI/CD (QR-003)
-
 
  Uruchomienie projektu
 
@@ -130,7 +121,7 @@ tworzy tabele
 tworzy hypertable TimescaleDB
 inicjalizuje schemat bazy
 
-4. Dostęp do bazy (opcjonalnie)
+4. Dostęp do bazy
 pgAdmin
 http://localhost:5050
 
@@ -138,13 +129,18 @@ Dane logowania:
 email: admin@admin.com
 hasło: admin
 
+dodawanie bazy:
+name:iotmanager
 
-PostgreSQL + TimescaleDB (baza: iotdb)
+Hostname/address: timescaledb
+port:5431
+maintenace database: iotdb
+username: postgres
+password: postgres
+
 
  Przepływ danych
 
 ESP32 → JSON → REST API → Spring Boot → PostgreSQL → TimescaleDB
 
 
-Projekt edukacyjny – system IoT w architekturze mikroserwisowej
-Spring Boot + ESP32 + PostgreSQL + TimescaleDB
