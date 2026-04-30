@@ -44,7 +44,7 @@ ESP32 (DHT11) → HTTP REST → Spring Boot API (8080) → PostgreSQL + Timescal
 
 Przykładowy request:
 
-    json
+JSON
 {
   "temperature": 23.5,
   "humidity": 45.0,
