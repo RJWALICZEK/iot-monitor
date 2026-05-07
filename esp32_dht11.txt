@@ -4,17 +4,19 @@
 #include <ArduinoJson.h>
 
 #define DHTPIN 4
+#define LEDPIN 5
 #define DHTTYPE DHT11
 
-const char* WIFI_SSID = "FunBox2-48E0";
-const char* WIFI_PASS = "4EF5FA317D4D576173F241FF7E";
+const char* WIFI_SSID = "<ssid>";
+const char* WIFI_PASS = "<pass>";
 
-const char* SERVER_URL = "http://192.168.1.14:8080/api/v1/measurements";
+const char* SERVER_URL = "http://<twoje_ip>:8080/api/v1/measurements";
 
 DHT dht(DHTPIN, DHTTYPE);
 
 void setup() {
   Serial.begin(115200);
+  pinMode(LEDPIN, OUTPUT);
   delay(1000);
   dht.begin();
 
@@ -22,9 +24,14 @@ void setup() {
   Serial.print("WiFi connecting");
 
   while (WiFi.status() != WL_CONNECTED) {
+    digitalWrite(LEDPIN, HIGH);
+    delay(200);
+    digitalWrite(LEDPIN, LOW);
     delay(200);
     Serial.print(".");
+    Serial.print("\n");
   }
+  digitalWrite(LEDPIN, LOW);
 
   Serial.println("\nWiFi connected!");
   Serial.println("IP: " + WiFi.localIP().toString());
@@ -34,7 +41,9 @@ void loop() {
   if (WiFi.status() != WL_CONNECTED) {
     Serial.println("WiFi lost, reconnecting...");
     WiFi.reconnect();
+    digitalWrite(LEDPIN, HIGH);
     delay(2000);
+    digitalWrite(LEDPIN, LOW);
     return;
   }
 
@@ -45,6 +54,13 @@ void loop() {
 
   if (isnan(h) || isnan(t)) {
     Serial.println("Read data error");
+    for(int i=1; i <= 2; i++) {
+      digitalWrite(LEDPIN, HIGH);
+    delay(100);
+    digitalWrite(LEDPIN, LOW);
+        delay(100);
+
+    }
     return;
   }
 
@@ -69,6 +85,9 @@ void loop() {
     Serial.printf("Temp: %.2f C | Humi: %.0f%% -> HTTP %d\n",
                   t, h, httpResponseCode);
   } else {
+    digitalWrite(LEDPIN, HIGH);
+    delay(100);
+    digitalWrite(LEDPIN, LOW);
     Serial.printf("HTTP error: %s\n",
                   http.errorToString(httpResponseCode).c_str());
   }
