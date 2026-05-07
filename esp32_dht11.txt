@@ -7,10 +7,10 @@
 #define LEDPIN 5
 #define DHTTYPE DHT11
 
-const char* WIFI_SSID = "";
-const char* WIFI_PASS = "";
+const char* WIFI_SSID = "<ssid>";
+const char* WIFI_PASS = "<pass>";
 
-const char* SERVER_URL = "http://192.168.1.29:8080/api/v1/measurements";
+const char* SERVER_URL = "http://<twoje_ip>:8080/api/v1/measurements";
 
 DHT dht(DHTPIN, DHTTYPE);
 
