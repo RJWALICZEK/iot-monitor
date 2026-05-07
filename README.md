@@ -17,6 +17,11 @@ Funkcje:
 łączenie z WiFi
 odczyt temperatury i wilgotności
 wysyłanie danych co 10 sekund do API
+dioda LED jako prosty wskaźnik stanu:
+-szybkie miganie	łączenie WiFi
+-świeci 2 s	utrata WiFi
+-1 błysk	HTTP error
+-2 błyski	błąd DHT11
 
 
 **Architektura systemu**
