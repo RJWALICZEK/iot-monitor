@@ -21,14 +21,22 @@ public class MeasurementService {
         return repository.save(measurement);
     }
 
-    public List<Measurement> getLastMeasurement(int limit) {
+    /*public List<Measurement> getLastMeasurement(int limit) {
         if (limit <= 0) { limit = 10; }
         if (limit >= 1000) {limit = 1000; }
         return repository.findAllByOrderByTsDesc(PageRequest.of(0, limit));
-    }
+    }*/
 
     public List<Measurement> getMeasurementFromLastHour() {
         Instant oneHourAgo = Instant.now().minus(1, ChronoUnit.HOURS);
-        return repository.findByTsAfter(oneHourAgo);
+        return repository.findByTsAfterOrderByTsDesc(oneHourAgo);
+    }
+
+    public List<Measurement> getLatest() {
+        return repository.findTop50ByOrderByTsDesc();
+    }
+
+    public Measurement getLatestOne() {
+        return repository.findTopByOrderByTsDesc();
     }
 }

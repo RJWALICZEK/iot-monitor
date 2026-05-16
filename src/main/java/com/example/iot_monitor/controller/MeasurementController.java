@@ -46,12 +46,21 @@ public class MeasurementController {
 
     // enpoint for web/android tests
     @GetMapping("/latest")
-    public ResponseEntity<List<Measurement>> getLatest() {
+    /*public ResponseEntity<List<Measurement>> getLatest() {
         return ResponseEntity.ok(service.getLastMeasurement(50));
+    }*/
+    //lista 50 ostatnich  rekordow
+    public ResponseEntity<List<Measurement>> getLatest() {
+        return ResponseEntity.ok(service.getLatest());
     }
-
+    //ostatnia godzina
     @GetMapping("/last-hour")
     public ResponseEntity<List<Measurement>> getLastHour() {
         return ResponseEntity.ok(service.getMeasurementFromLastHour());
+    }
+    //ostatni rekord
+    @GetMapping("/current")
+    public ResponseEntity<Measurement> getCurrent() {
+        return ResponseEntity.ok(service.getLatestOne());
     }
 }
