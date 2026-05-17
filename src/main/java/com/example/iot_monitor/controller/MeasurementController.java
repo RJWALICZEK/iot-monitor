@@ -49,18 +49,23 @@ public class MeasurementController {
     /*public ResponseEntity<List<Measurement>> getLatest() {
         return ResponseEntity.ok(service.getLastMeasurement(50));
     }*/
-    //lista 50 ostatnich  rekordow
+    //get last 50 records
     public ResponseEntity<List<Measurement>> getLatest() {
         return ResponseEntity.ok(service.getLatest());
     }
-    //ostatnia godzina
+    //last hour records
     @GetMapping("/last-hour")
     public ResponseEntity<List<Measurement>> getLastHour() {
         return ResponseEntity.ok(service.getMeasurementFromLastHour());
     }
-    //ostatni rekord
+    //get last one record
     @GetMapping("/current")
     public ResponseEntity<Measurement> getCurrent() {
         return ResponseEntity.ok(service.getLatestOne());
+    }
+    //get all records
+    @GetMapping("/all")
+    public ResponseEntity<List<Measurement>> getAll() {
+        return ResponseEntity.ok(service.getAll());
     }
 }

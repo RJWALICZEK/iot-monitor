@@ -39,4 +39,8 @@ public class MeasurementService {
     public Measurement getLatestOne() {
         return repository.findTopByOrderByTsDesc();
     }
+
+    public List<Measurement> getAll() {
+        return repository.findAllByOrderByTsDesc();
+    }
 }
