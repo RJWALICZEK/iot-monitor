@@ -7,10 +7,10 @@
 #define LEDPIN 5
 #define DHTTYPE DHT11
 
-const char* WIFI_SSID = "<ssid>";
-const char* WIFI_PASS = "<pass>";
+const char* WIFI_SSID = "IoT_AP";
+const char* WIFI_PASS = "12345678";
 
-const char* SERVER_URL = "http://<twoje_ip>:8080/api/v1/measurements";
+const char* SERVER_URL = "http://10.42.0.1:8080/api/v1/measurements";
 
 DHT dht(DHTPIN, DHTTYPE);
 
@@ -29,7 +29,6 @@ void setup() {
     digitalWrite(LEDPIN, LOW);
     delay(200);
     Serial.print(".");
-    Serial.print("\n");
   }
   digitalWrite(LEDPIN, LOW);
 
@@ -39,13 +38,22 @@ void setup() {
 
 void loop() {
   if (WiFi.status() != WL_CONNECTED) {
+
     Serial.println("WiFi lost, reconnecting...");
-    WiFi.reconnect();
-    digitalWrite(LEDPIN, HIGH);
-    delay(2000);
-    digitalWrite(LEDPIN, LOW);
-    return;
-  }
+
+    WiFi.disconnect();
+    WiFi.begin(WIFI_SSID, WIFI_PASS);
+
+    while (WiFi.status() != WL_CONNECTED) {
+        digitalWrite(LEDPIN, HIGH);
+        delay(200);
+        digitalWrite(LEDPIN, LOW);
+        delay(200);
+        Serial.print(".");
+    }
+
+    Serial.println("\nWiFi reconnected!");
+}
 
   delay(10000);
 
