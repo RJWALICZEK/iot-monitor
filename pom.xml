@@ -30,22 +30,38 @@
 		<java.version>21</java.version>
 	</properties>
 	<dependencies>
+		<!-- Spring Data JPA
+        Umożliwia komunikację z bazą danych w sposób obiektowy (ORM)
+        Zastępuje ręczne pisanie zapytań SQL -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+		<!-- Spring Validation
+         Służy do walidacji danych wejściowych (np. @NotNull, @Size)
+         Zapewnia poprawność danych trafiających do API -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-validation</artifactId>
 		</dependency>
+		<!-- Spring Web
+         Umożliwia tworzenie REST API (kontrolery, endpointy HTTP)
+         Obsługuje komunikację JSON -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
+		<!-- Flyway (PostgreSQL)
+        Narzędzie do zarządzania migracjami bazy danych
+        Automatycznie tworzy i aktualizuje strukturę bazy -->
 		<dependency>
 			<groupId>org.flywaydb</groupId>
 			<artifactId>flyway-database-postgresql</artifactId>
 		</dependency>
+		<!-- Spring Boot DevTools
+         Ułatwia pracę podczas developmentu:
+         - automatyczny restart aplikacji
+         - szybkie testowanie zmian -->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -53,16 +69,23 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+		<!-- PostgreSQL Driver
+        Sterownik umożliwiający połączenie aplikacji z bazą PostgreSQL -->
 		<dependency>
 			<groupId>org.postgresql</groupId>
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<!-- Lombok
+         Automatyzuje generowanie kodu (gettery, settery, konstruktory)
+         Zmniejsza ilość kodu w encjach i klasach -->
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
 			<optional>true</optional>
 		</dependency>
+		<!-- Spring Boot Test
+        Biblioteka do testów jednostkowych i integracyjnych -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>

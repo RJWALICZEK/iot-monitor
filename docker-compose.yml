@@ -1,3 +1,12 @@
+# Docker Compose konfiguracja środowiska bazy danych dla aplikacji IoT Monitor.
+#
+# System składa się z dwóch usług:
+# - TimescaleDB (PostgreSQL zoptymalizowany pod dane czasowe IoT)
+# - pgAdmin (narzędzie do zarządzania bazą danych przez przeglądarkę)
+#
+# Umożliwia łatwe uruchomienie i zarządzanie środowiskiem bazodanowym
+# wykorzystywanym do przechowywania danych pomiarowych z urządzeń IoT.
+
 services:
   timescaledb:
     image: timescale/timescaledb:2.14.2-pg15
@@ -39,3 +48,5 @@ services:
 
 volumes:
   timescaledb_data:
+
+

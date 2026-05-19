@@ -1,3 +1,4 @@
+
 spring:
   application:
     name: iot-monitor
@@ -8,24 +9,24 @@ spring:
     password: postgres
     driver-class-name: org.postgresql.Driver
   flyway:
-    enabled: true
-    locations: classpath:db/migration
-    validate-migration-naming: true
+    enabled: true   # włączenie migracji bazy
+    locations: classpath:db/migration  # lokalizacja plików SQL
+    validate-migration-naming: true  #kontrola nazw migracji
   jpa:
     hibernate:
-      ddl-auto: none
-    show-sql: true
+      ddl-auto: none # brak automatycznego tworzenia tabel (Flyway zarządza schematem)
+    show-sql: true # wyświetlanie zapytań SQL w logach
     properties:
       hibernate:
-        format_sql: true
+        format_sql: true # czytelne formatowanie SQL
   jackson:
     serialization:
-      write-dates-as-timestamps: false
+      write-dates-as-timestamps: false  # daty w JSON jako ISO-8601 (czytelny format)
 
 server:
-  port: 8080
+  port: 8080 # port aplikacji backend
 
 logging:
   level:
-    org.hibernate.SQL: DEBUG
-    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.hibernate.SQL: DEBUG # logowanie zapytań SQL
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE # logowanie parametrów SQL

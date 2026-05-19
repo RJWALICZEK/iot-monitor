@@ -16,3 +16,15 @@ SELECT create_hypertable('measurements', 'ts', if_not_exists => TRUE);
 
 CREATE INDEX IF NOT EXISTS idx_measurements_timestamp
     ON measurements (ts DESC);
+
+/**
+ * MeasurementService – warstwa logiki biznesowej aplikacji IoT Monitor.
+ *
+ * Odpowiada za:
+ * - zapis pomiarów do bazy danych
+ * - pobieranie danych w różnych zakresach czasu (ostatnia godzina, 24h, wszystkie dane)
+ * - przygotowanie danych do wyświetlania w API i wykresach
+ * - agregację danych (np. 1 pomiar na godzinę dla analizy trendów)
+ *
+ * Klasa pośredniczy między kontrolerem REST a repozytorium bazy danych.
+ */
