@@ -68,4 +68,9 @@ public class MeasurementController {
     public ResponseEntity<List<Measurement>> getAll() {
         return ResponseEntity.ok(service.getAll());
     }
+    //get 24 records one hour peroid
+    @GetMapping("/last-24h")
+    public ResponseEntity<List<Measurement>> getLast24() {
+        return ResponseEntity.ok(service.getLast24Hour());
+    }
 }
