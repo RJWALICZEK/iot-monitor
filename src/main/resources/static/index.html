@@ -16,14 +16,14 @@
       <div class="grid">
         <!-- TEMPERATURA -->
         <div class="card">
-          <div class="label">Temperatura</div>
+          <div class="label">TEMPERATURE</div>
 
           <div class="value"><span id="temp">--</span> °C</div>
         </div>
 
         <!-- WILGOTNOŚĆ -->
         <div class="card">
-          <div class="label">Wilgotność</div>
+          <div class="label">HUMITIDY</div>
 
           <div class="value"><span id="hum">--</span> %</div>
         </div>
@@ -31,17 +31,17 @@
 
       <!-- STATUS -->
       <div class="card">
-        <div class="label">Status urządzenia</div>
+        <div class="label">DEVICE STATUS</div>
 
-        <div class="value" style="font-size: 24px">ONLINE</div>
+        <div class="value" id="status" style="font-size: 24px"></div>
       </div>
 
       <!-- BUTTON -->
       <div style="text-align: center; margin-top: 20px">
-        <button onclick="loadData()">Odśwież dane</button>
+        <button onclick="load()">REFRESH DATA</button>
       </div>
     </div>
 
-    <script src="js/app.js"></script>
+    <script src="js/script.js"></script>
   </body>
 </html>

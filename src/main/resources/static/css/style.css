@@ -1,17 +1,7 @@
-/* ===== GLOBAL ===== */
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 body {
   background: #0b0f14;
   color: #00ffff;
-  font-family: Arial, Helvetica, sans-serif;
-
-  min-height: 100vh;
+  font-family: "sevenSegment", sans-serif;
 
   display: flex;
   justify-content: center;
@@ -20,17 +10,12 @@ body {
   padding: 30px;
 }
 
-/* ===== CONTAINER ===== */
-
 .container {
-  width: 100%;
-  max-width: 800px;
+  width: 800px;
 
   background: #111827;
 
   border: 1px solid #00ffff33;
-
-  border-radius: 20px;
 
   padding: 40px;
 
@@ -38,8 +23,6 @@ body {
     0 0 20px #00ffff22,
     0 0 60px #00ffff11;
 }
-
-/* ===== TITLE ===== */
 
 h1 {
   text-align: center;
@@ -53,14 +36,10 @@ h1 {
   text-shadow: 0 0 10px #00ffff88;
 }
 
-/* ===== CARDS ===== */
-
 .card {
   background: #1a2332;
 
   border: 1px solid #00ffff22;
-
-  border-radius: 16px;
 
   padding: 25px;
 
@@ -69,20 +48,8 @@ h1 {
   transition: 0.3s ease;
 }
 
-.card:hover {
-  transform: translateY(-3px);
-
-  box-shadow:
-    0 0 20px #00ffff33,
-    0 0 40px #00ffff11;
-}
-
-/* ===== TEXT ===== */
-
 .label {
   font-size: 18px;
-
-  opacity: 0.8;
 
   margin-bottom: 8px;
 }
@@ -96,8 +63,6 @@ h1 {
 
   text-shadow: 0 0 10px #00ffff55;
 }
-
-/* ===== GRID ===== */
 
 .grid {
   display: grid;
@@ -118,8 +83,6 @@ button {
 
   padding: 12px 20px;
 
-  border-radius: 10px;
-
   cursor: pointer;
 
   transition: 0.3s ease;
@@ -135,8 +98,6 @@ button:hover {
   box-shadow: 0 0 15px #00ffff88;
 }
 
-/* ===== RESPONSIVE ===== */
-
 @media (max-width: 768px) {
   h1 {
     font-size: 32px;
@@ -149,4 +110,9 @@ button:hover {
   .container {
     padding: 20px;
   }
+}
+@font-face {
+  font-family: "sevenSegment";
+  src: url("../font/seven_segment.ttf") format("truetype");
+  font-style: normal;
 }
