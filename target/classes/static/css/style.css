@@ -1,0 +1,152 @@
+/* ===== GLOBAL ===== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #0b0f14;
+  color: #00ffff;
+  font-family: Arial, Helvetica, sans-serif;
+
+  min-height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 30px;
+}
+
+/* ===== CONTAINER ===== */
+
+.container {
+  width: 100%;
+  max-width: 800px;
+
+  background: #111827;
+
+  border: 1px solid #00ffff33;
+
+  border-radius: 20px;
+
+  padding: 40px;
+
+  box-shadow:
+    0 0 20px #00ffff22,
+    0 0 60px #00ffff11;
+}
+
+/* ===== TITLE ===== */
+
+h1 {
+  text-align: center;
+
+  margin-bottom: 30px;
+
+  font-size: 42px;
+
+  color: #00ffff;
+
+  text-shadow: 0 0 10px #00ffff88;
+}
+
+/* ===== CARDS ===== */
+
+.card {
+  background: #1a2332;
+
+  border: 1px solid #00ffff22;
+
+  border-radius: 16px;
+
+  padding: 25px;
+
+  margin-bottom: 20px;
+
+  transition: 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+
+  box-shadow:
+    0 0 20px #00ffff33,
+    0 0 40px #00ffff11;
+}
+
+/* ===== TEXT ===== */
+
+.label {
+  font-size: 18px;
+
+  opacity: 0.8;
+
+  margin-bottom: 8px;
+}
+
+.value {
+  font-size: 40px;
+
+  font-weight: bold;
+
+  color: #00ffff;
+
+  text-shadow: 0 0 10px #00ffff55;
+}
+
+/* ===== GRID ===== */
+
+.grid {
+  display: grid;
+
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+
+  gap: 20px;
+}
+
+/* ===== BUTTON ===== */
+
+button {
+  background: transparent;
+
+  border: 1px solid #00ffff;
+
+  color: #00ffff;
+
+  padding: 12px 20px;
+
+  border-radius: 10px;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+
+  font-size: 16px;
+}
+
+button:hover {
+  background: #00ffff;
+
+  color: #000;
+
+  box-shadow: 0 0 15px #00ffff88;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media (max-width: 768px) {
+  h1 {
+    font-size: 32px;
+  }
+
+  .value {
+    font-size: 28px;
+  }
+
+  .container {
+    padding: 20px;
+  }
+}

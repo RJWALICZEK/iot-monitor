@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>IoT Monitor</title>
+
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+
+  <body>
+    <div class="container">
+      <h1>IoT MONITOR</h1>
+
+      <div class="grid">
+        <!-- TEMPERATURA -->
+        <div class="card">
+          <div class="label">Temperatura</div>
+
+          <div class="value"><span id="temp">--</span> °C</div>
+        </div>
+
+        <!-- WILGOTNOŚĆ -->
+        <div class="card">
+          <div class="label">Wilgotność</div>
+
+          <div class="value"><span id="hum">--</span> %</div>
+        </div>
+      </div>
+
+      <!-- STATUS -->
+      <div class="card">
+        <div class="label">Status urządzenia</div>
+
+        <div class="value" style="font-size: 24px">ONLINE</div>
+      </div>
+
+      <!-- BUTTON -->
+      <div style="text-align: center; margin-top: 20px">
+        <button onclick="loadData()">Odśwież dane</button>
+      </div>
+    </div>
+
+    <script src="js/app.js"></script>
+  </body>
+</html>
